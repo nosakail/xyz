@@ -17,7 +17,13 @@
                 {{-- Ajout de la catégorie --}}
                 <dt>Catégorie</dt>
                 <dd>
-                    <a href="{{ route('app.categories.show', ['category' => $track->category->id]) }}" class="link">{{ $track->category->name }}</a>
+                    @if($track->category)
+                        <a href="{{ route('app.categories.show', ['category' => $track->category->id]) }}" class="link">
+                            {{ $track->category->name }}
+                        </a>
+                    @else
+                        <span>Non catégorisé</span>
+                    @endif
                 </dd>
 
                 <dt>Contributeur</dt>

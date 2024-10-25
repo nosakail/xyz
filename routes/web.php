@@ -8,6 +8,7 @@ use App\Http\Controllers\TrackController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Middleware\EnsureValidCodeMiddleware;
+use App\Http\Controllers\CategoryController;
 
 // Auth
 Route::get('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');

@@ -21,6 +21,9 @@ class TrackController extends Controller
      */
     public function show(Request $request, Week $week, Track $track, Player $player): View
     {
+        // Charger la relation category
+        $track->load('category');
+
         return view('app.tracks.show', [
             'week' => $week->loadCount('tracks'),
             'track' => $track->loadCount('likes'),
@@ -46,7 +49,7 @@ class TrackController extends Controller
     /**
      * Create a new track.
      */
-    public function store(Request $request, Player $player): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $this->authorize('create', Track::class);
 
@@ -54,11 +57,12 @@ class TrackController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'artist' => ['required', 'string', 'max:255'],
             'url' => ['required', 'url', new PlayerUrl()],
+            'category_id' => ['required', 'exists:categories,id'],
         ]);
 
         DB::beginTransaction();
 
-        // Set track title, artist and url
+        // Set track title, artist, url and category
         $track = new Track($validated);
 
         // Set track's user + week

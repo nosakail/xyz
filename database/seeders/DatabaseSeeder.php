@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
         // Create weeks
         $this->call(WeekSeeder::class);
 
+        // Ajoutez cette ligne avant la création des tracks
+        $this->call(CategorySeeder::class);
+
         // Create content
         User::factory()
             ->count(15)

@@ -49,7 +49,7 @@ class TrackController extends Controller
     /**
      * Create a new track.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, Player $player): RedirectResponse
     {
         $this->authorize('create', Track::class);
 

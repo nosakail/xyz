@@ -12,6 +12,12 @@
             <a href="{{ route('app.weeks.index') }}">Classement</a>
             @endif
         </li>
+
+        {{-- Ajout du lien vers les catégories --}}
+        <li @class(['current' => request()->routeIs('app.categories.*')])>
+            <a href="{{ route('app.categories.index') }}">Catégories</a>
+        </li>
+
         <li @class(['current' => request()->routeIs('app.tracks.create')])>
             <a href="{{ route('app.tracks.create') }}">+ Contribuer</a>
         </li>
